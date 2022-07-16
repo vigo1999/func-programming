@@ -16,7 +16,7 @@ let a1 = Noeud (
               Feuille 7
             )
            ),
-           1,
+           0,
            Noeud (
             Vide,
             2,
@@ -78,4 +78,59 @@ let rec complet a = match a with
   | Feuille f -> true
   | Noeud (l, x, r) -> (complet l) && (complet r);;
 
+let parfait a = if (complet a) && (equilibre a) then true else false;;
+
+let rec miroir a = match a with
+  Vide -> Vide
+  | Feuille f -> Feuille f
+  | Noeud (l, x, r) -> Noeud ((miroir r), x, (miroir l));;
+*)
+
+(* 
+  (* Probleme 2 *)
+
+type 'a elem_arbre = N of 'a | F of 'a | V;;
+
+let rec prefix a = match a with
+  Vide -> [V]
+  | Feuille f -> [F f]
+  | Noeud (l, x, r) -> [N x] @ (prefix l) @ (prefix r);;
+
+let rec infix a = match a with
+  Vide -> [V]
+  | Feuille f -> [F f]
+  | Noeud (l, x, r) -> (infix l) @ [N x] @ (infix r);;
+
+let rec postfix a = match a with
+  Vide -> [V]
+  | Feuille f -> [F f]
+  | Noeud (l, x, r) -> (postfix l) @ (postfix r) @ [N x];;
+
+let infix_1 = Noeud (
+                Feuille 1,
+                2,
+                Noeud (
+                  Noeud (
+                    Feuille 3,
+                    4,
+                    Feuille 5
+                  ),
+                  6,
+                  Feuille 7
+                )
+              );;
+
+let infix_2 = Noeud (
+                Noeud (
+                  Feuille 1,
+                  2,
+                  Feuille 3
+                ),
+                4,
+                Noeud (
+                  Feuille 5,
+                  6,
+                  Feuille 7
+                )
+              );;
 *)
