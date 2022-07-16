@@ -168,4 +168,23 @@ let rec est_de_recherche a = match a with
   | Noeud (Vide, x, Feuille f) -> if x < f then true else false
   | Noeud (Feuille l, x, Feuille r) -> if ( (l < x) && (x < r) ) then true else false
   | Noeud (l, x, r) -> if ( (est_de_recherche l) && (est_de_recherche r) ) then true else false;; 
+
+
+let rec recherche2 e a = match a with
+  Vide -> false
+  | Noeud (l, x, r) -> if (e=x) then true
+  else if (e<x) then (recherche e l) else (recherche2 e r);;
+
+(*
+la compléxité de recherche d'appartenance d'un élément dans un arbre binaire
+de recherche est en O(h) où h est la hauteur de l'arbre, soit O(log n) avec n le nombre de noeud.
+Dans le préambule, dans le pire des cas on obtient une compléxité en O(n).
+*)
+
+let rec add e a = match a with
+  Vide -> Noeud (Vide, e, Vide)
+  | Noeud (l, x, r) -> if (e<x) then Noeud ((add e l), x, r)
+  else Noeud (l, x, (add e r));;
+
+
 *)
