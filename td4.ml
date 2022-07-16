@@ -2,9 +2,8 @@
 (*
 (* Probleme 1 *)
 
-let rec isSorted l = match l with
-  [] -> true
-  | h::[] -> true
-  | i::j::[] -> (fun i j -> if i < j then true else false)
-  | i::j:h -> isSorted h ;;
+let rec estTriee l = match l with
+  | [] -> true
+  | a::[] -> true
+  | a::b::q -> a<b && estTriee (b::q);;
 *)
