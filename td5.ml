@@ -134,3 +134,38 @@ let infix_2 = Noeud (
                 )
               );;
 *)
+
+(*
+(* Probleme 3 *)
+
+let a3 = Noeud (
+          Noeud (
+            Feuille 1,
+            3,
+            Noeud (
+              Feuille 4,
+              6,
+              Feuille 7
+            )
+          ),
+          8,
+          Noeud (
+            Vide,
+            10,
+            Noeud (
+              Feuille 13,
+              14,
+              Vide
+            )
+          )
+        );;
+
+let rec est_de_recherche a = match a with
+  Vide -> true
+  | Feuille f -> true
+  | Noeud (Vide, x, Vide) -> true
+  | Noeud (Feuille f, x, Vide) -> if f < x then true else false
+  | Noeud (Vide, x, Feuille f) -> if x < f then true else false
+  | Noeud (Feuille l, x, Feuille r) -> if ( (l < x) && (x < r) ) then true else false
+  | Noeud (l, x, r) -> if ( (est_de_recherche l) && (est_de_recherche r) ) then true else false;; 
+*)
